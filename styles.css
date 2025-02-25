@@ -1,0 +1,186 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Pacifico', cursive;
+    background: #000;
+    color: white;
+    -webkit-tap-highlight-color: transparent;
+}
+
+#stars {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    overflow: hidden;
+}
+
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0;
+    animation: twinkle 2s infinite ease
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+}
+
+#heart-canvas {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: auto;
+    cursor: pointer;
+    z-index: 1;
+    transition: opacity 1s ease-in-out;
+}
+
+#click-message {
+    position: absolute;
+    bottom: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 28px;
+    opacity: 0;
+    text-shadow: 0 0 15px rgba(255, 100, 100, 0.9);
+    z-index: 2;
+    pointer-events: none;
+    animation: 
+        fadeIn 0.5s ease-out forwards 3s,
+        blink 1s linear infinite 3.5s;
+    color: rgba(255, 105, 180, 0.8);
+    font-family: 'Pacifico', cursive;
+    text-align: center;
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bold;
+    transition: opacity 0.8s ease-in-out !important;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+    to { opacity: 0.8; transform: translateX(-50%) translateY(0); }
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; }
+}
+
+#click-message.fade-out {
+    opacity: 0 !important;
+    animation: none !important;
+}
+
+.text-container {
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    text-align: center;
+    z-index: 10;
+    pointer-events: none;
+}
+
+#congrats-message {
+    font-size: 4em;
+    opacity: 0;
+    margin: 0;
+    position: relative;
+    animation: 
+        floatUp 2s cubic-bezier(0.19, 1, 0.22, 1) forwards,
+        glow 2s ease-in-out infinite alternate;
+    white-space: nowrap;
+    padding: 20px;
+    background: linear-gradient(45deg, #ff69b4, #ff1493);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    border-radius: 15px;
+    display: inline-block;
+    filter: drop-shadow(0 0 20px rgba(255,105,180,0.5));
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(100vh) rotateZ(-10deg); opacity: 0; }
+    100% { transform: translateY(0) rotateZ(0); opacity: 1; }
+}
+
+@keyframes glow {
+    from { filter: drop-shadow(0 0 10px rgba(255,105,180,0.5)); }
+    to { filter: drop-shadow(0 0 30px rgba(255,105,180,0.9)); }
+}
+
+#additional-message {
+    font-size: 1.8em;
+    opacity: 0;
+    max-width: 800px;
+    margin: 40px auto 0;
+    padding: 30px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    transform: translateY(50px);
+    transition: all 1.5s cubic-bezier(0.23, 1, 0.32, 1);
+    line-height: 1.6;
+    box-shadow: 0 0 40px rgba(255, 105, 180, 0.3);
+    border: 2px solid rgba(255,105,180,0.3);
+    font-family: 'Comfortaa', cursive;
+}
+
+#additional-message.show {
+    opacity: 1;
+    transform: translateY(0);
+    background: rgba(0, 0, 0, 0.85);
+}
+
+#birthday-gift {
+    position: fixed;
+    bottom: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 32px;
+    padding: 20px 40px;
+    background: linear-gradient(45deg, #ff69b4, #ff1493);
+    border-radius: 50px;
+    box-shadow: 0 0 30px rgba(255, 105, 180, 0.5);
+    opacity: 0;
+    transition: all 1s ease-out;
+    z-index: 5;
+    font-family: 'Comfortaa', cursive;
+}
+
+@media (max-width: 768px) {
+    #congrats-message {
+        font-size: 2.5em;
+        white-space: normal;
+        padding: 15px;
+    }
+    
+    #additional-message {
+        font-size: 1.2em;
+        padding: 20px;
+        margin: 20px 15px 0;
+    }
+    
+    #birthday-gift {
+        font-size: 24px;
+        padding: 15px 30px;
+    }
+}
+
+#music-control {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 4;
+}
